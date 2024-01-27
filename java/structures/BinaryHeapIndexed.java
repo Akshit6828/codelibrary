@@ -1,26 +1,27 @@
-#include <bits/stdc++.h>
+package structures;
 
-using namespace std;
+// https://en.wikipedia.org/wiki/Binary_heap
+// invariant: heap[parent] <= heap[child]
+public class BinaryHeapIndexed {
+    int[] heap;
+    int[] pos2Id;
+    int[] id2Pos;
+    public int size;
 
-template <class T>
-struct binary_heap {
-    vector<T> heap;
-    vector<int> pos2Id;
-    vector<int> id2Pos;
-    int size;
+    public BinaryHeapIndexed(int n) {
+        heap = new int[n];
+        pos2Id = new int[n];
+        id2Pos = new int[n];
+    }
 
-    binary_heap() : size(0) {}
-
-    binary_heap(int n) : heap(n), pos2Id(n), id2Pos(n), size(0) {}
-
-    void add(int id, T value) {
+    public void add(int id, int value) {
         heap[size] = value;
         pos2Id[size] = id;
         id2Pos[id] = size;
         up(size++);
     }
 
-    int remove_min() {
+    public int removeMin() {
         int removedId = pos2Id[0];
         heap[0] = heap[--size];
         pos2Id[0] = pos2Id[size];
@@ -29,14 +30,14 @@ struct binary_heap {
         return removedId;
     }
 
-    void remove(int id) {
+    public void remove(int id) {
         int pos = id2Pos[id];
         pos2Id[pos] = pos2Id[--size];
         id2Pos[pos2Id[pos]] = pos;
-        changePriority(pos2Id[pos], heap[size]);
+        changeValue(pos2Id[pos], heap[size]);
     }
 
-    void changePriority(int id, T value) {
+    public void changeValue(int id, int value) {
         int pos = id2Pos[id];
         if (heap[pos] < value) {
             heap[pos] = value;
@@ -52,7 +53,7 @@ struct binary_heap {
             int parent = (pos - 1) / 2;
             if (heap[pos] >= heap[parent])
                 break;
-            exchange(pos, parent);
+            swap(pos, parent);
             pos = parent;
         }
     }
@@ -66,28 +67,36 @@ struct binary_heap {
                 ++child;
             if (heap[pos] <= heap[child])
                 break;
-            exchange(pos, child);
+            swap(pos, child);
             pos = child;
         }
     }
 
-    void exchange(int i, int j) {
-        swap(heap[i], heap[j]);
-        swap(pos2Id[i], pos2Id[j]);
+    void swap(int i, int j) {
+        int t = heap[i];
+        heap[i] = heap[j];
+        heap[j] = t;
+        int tt = pos2Id[i];
+        pos2Id[i] = pos2Id[j];
+        pos2Id[j] = tt;
         id2Pos[pos2Id[i]] = i;
         id2Pos[pos2Id[j]] = j;
     }
-};
 
-// usage example
-int main() {
-    binary_heap<int> h(5);
-    h.add(0, 50);
-    h.add(1, 30);
-    h.add(2, 40);
-    h.changePriority(0, 20);
-    h.remove(1);
-    while (h.size) {
-        cout << h.remove_min() << endl;
+    // Usage example
+    public static void main(String[] args) {
+        BinaryHeapIndexed heap = new BinaryHeapIndexed(10);
+        heap.add(0, 4);
+        heap.add(1, 5);
+        heap.add(2, 2);
+
+        heap.changeValue(1, 3);
+        heap.changeValue(2, 6);
+        heap.remove(0);
+
+        // print elements in sorted order
+        while (heap.size != 0) {
+            System.out.println(heap.heap[0] + " " + heap.removeMin());
+        }
     }
 }

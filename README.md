@@ -1,9 +1,10 @@
 [![GitHub stars](https://img.shields.io/github/stars/indy256/codelibrary.svg?style=flat&label=star)](https://github.com/indy256/codelibrary/)
-[![Java CI](https://github.com/indy256/codelibrary/workflows/Java%20CI/badge.svg)](https://github.com/indy256/codelibrary/actions?query=workflow%3A%22Java+CI%22)
-[![C++ CI](https://github.com/indy256/codelibrary/workflows/C++%20CI/badge.svg)](https://github.com/indy256/codelibrary/actions?query=workflow%3A%22C%2B%2B+CI%22)
+[![Java CI](https://github.com/indy256/codelibrary/actions/workflows/java.yml/badge.svg)](https://github.com/indy256/codelibrary/actions/workflows/java.yml)
+[![C++ CI](https://github.com/indy256/codelibrary/actions/workflows/cpp.yml/badge.svg)](https://github.com/indy256/codelibrary/actions/workflows/cpp.yml)
+[![Rust CI](https://github.com/indy256/codelibrary/actions/workflows/rust.yml/badge.svg)](https://github.com/indy256/codelibrary/actions/workflows/rust.yml)
 [![License](https://img.shields.io/badge/license-UNLICENSE-green.svg)](https://github.com/indy256/codelibrary/blob/master/UNLICENSE)
 
-### Collection of algorithms and data structures in C++, Java, Kotlin and Python
+### Collection of algorithms and data structures in C++, Java, Kotlin, Python and Rust
 
 #### Data structures
 + [x] Segment tree [**c++**](cpp/structures/segment_tree.h) [**java**](java/structures/SegmentTree.java) [**kotlin**](kotlin/SegmentTree.kt)
